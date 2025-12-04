@@ -3,13 +3,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function ForgetPassword() {
     const [email, setEmail] = useState("");
 
+    const router = useRouter();
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         console.log("Reset password for", email);
+        router.push("/reset-password");
     };
 
     return (
