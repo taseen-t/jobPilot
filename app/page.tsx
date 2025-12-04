@@ -1,12 +1,11 @@
 "use client";
 
 import Header from "@/components/Header";
+import Stats from "@/components/Stats";
+import MostPopularVacancies from "@/components/MostPopularVacancies";
+import HowItWorks from "@/components/HowItWorks";
 import Image from "next/image";
 import { CiSearch, CiLocationOn } from "react-icons/ci";
-import { BsBriefcase } from "react-icons/bs";
-import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
-import { FiUsers } from "react-icons/fi";
-import { PiSuitcaseSimple } from "react-icons/pi";
 
 export default function Home() {
   return (
@@ -54,7 +53,6 @@ export default function Home() {
               </p>
             </div>
 
-
             <div className="relative w-full max-w-lg lg:max-w-xl">
               <Image
                 src="/job-search-illustration.jpg"
@@ -65,55 +63,16 @@ export default function Home() {
                 priority
               />
             </div>
+
           </div>
         </section>
 
+        <Stats />
 
-        <section className="bg-gray-50 py-16">
-          <div className="container mx-auto grid grid-cols-1 gap-6 px-4 sm:grid-cols-2 lg:grid-cols-4">
+        <MostPopularVacancies />
 
-            <div className="flex items-center gap-4 rounded-lg bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
-              <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
-                <BsBriefcase className="h-8 w-8" />
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold text-gray-900">1,75,324</h3>
-                <p className="text-gray-500">Live Job</p>
-              </div>
-            </div>
+        <HowItWorks />
 
-
-            <div className="flex items-center gap-4 rounded-lg bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
-              <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-blue-600 text-white">
-                <HiOutlineBuildingOffice2 className="h-8 w-8" />
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold text-gray-900">97,354</h3>
-                <p className="text-gray-500">Companies</p>
-              </div>
-            </div>
-
-
-            <div className="flex items-center gap-4 rounded-lg bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
-              <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
-                <FiUsers className="h-8 w-8" />
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold text-gray-900">38,47,154</h3>
-                <p className="text-gray-500">Candidates</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-4 rounded-lg bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
-              <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
-                <PiSuitcaseSimple className="h-8 w-8" />
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold text-gray-900">7,532</h3>
-                <p className="text-gray-500">New Jobs</p>
-              </div>
-            </div>
-          </div>
-        </section>
       </main>
     </div>
   );
