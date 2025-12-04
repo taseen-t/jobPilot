@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { FiPhoneCall } from "react-icons/fi";
+import { FiPhoneCall, FiMenu, FiX } from "react-icons/fi";
 import { BiWorld } from "react-icons/bi";
 import { BsBriefcase } from "react-icons/bs";
 import { IoIosArrowDown } from "react-icons/io";
@@ -38,41 +38,69 @@ const countries = [
 
 export default function Header() {
     const [selectedCountryCode, setSelectedCountryCode] = useState("pk");
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     return (
         <header className="w-full bg-white">
             <div className="border-b border-gray-100 bg-gray-50 px-4 py-2 text-sm text-gray-500">
-                <div className="container mx-auto flex flex-col items-center justify-between gap-2 md:flex-row">
-                    <nav className="flex gap-6">
-                        <Link href="/" className="text-blue-600 font-medium">Home</Link>
-                        <Link href="#" className="hover:text-blue-600">Find Job</Link>
-                        <Link href="#" className="hover:text-blue-600">Employers</Link>
-                        <Link href="#" className="hover:text-blue-600">Candidates</Link>
-                        <Link href="#" className="hover:text-blue-600">Pricing Plans</Link>
-                        <Link href="#" className="hover:text-blue-600">Customer Supports</Link>
-                    </nav>
-                    <div className="flex items-center gap-6">
-                        <div className="flex items-center gap-2">
-                            <FiPhoneCall />
-                            <span>+1-202-555-0178</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <Image src="https://flagcdn.com/w40/us.png" alt="US Flag" width={20} height={15} />
-                            <span>English</span>
-                            <IoIosArrowDown />
+                <div className="container mx-auto">
+                    <div className="flex items-center justify-between md:justify-between">
+
+                        <button
+                            className="md:hidden text-2xl text-gray-600"
+                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                        >
+                            {isMobileMenuOpen ? <FiX /> : <FiMenu />}
+                        </button>
+
+
+                        <nav className="hidden md:flex gap-6">
+                            <Link href="/" className="text-blue-600 font-medium">Home</Link>
+                            <Link href="#" className="hover:text-blue-600">Find Job</Link>
+                            <Link href="#" className="hover:text-blue-600">Employers</Link>
+                            <Link href="#" className="hover:text-blue-600">Candidates</Link>
+                            <Link href="#" className="hover:text-blue-600">Pricing Plans</Link>
+                            <Link href="#" className="hover:text-blue-600">Customer Supports</Link>
+                        </nav>
+
+                        <div className="flex items-center gap-6 ml-auto md:ml-0">
+                            <div className="hidden sm:flex items-center gap-2">
+                                <FiPhoneCall />
+                                <span>+1-202-555-0178</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <Image src="https://flagcdn.com/w40/us.png" alt="US Flag" width={20} height={15} />
+                                <span>English</span>
+                                <IoIosArrowDown />
+                            </div>
                         </div>
                     </div>
+                    {isMobileMenuOpen && (
+                        <nav className="md:hidden flex flex-col gap-3 py-3 border-t border-gray-200 mt-2">
+                            <Link href="/" className="text-blue-600 font-medium">Home</Link>
+                            <Link href="#" className="hover:text-blue-600">Find Job</Link>
+                            <Link href="#" className="hover:text-blue-600">Employers</Link>
+                            <Link href="#" className="hover:text-blue-600">Candidates</Link>
+                            <Link href="#" className="hover:text-blue-600">Pricing Plans</Link>
+                            <Link href="#" className="hover:text-blue-600">Customer Supports</Link>
+                            <div className="flex sm:hidden items-center gap-2 pt-2 border-t border-gray-100">
+                                <FiPhoneCall />
+                                <span>+1-202-555-0178</span>
+                            </div>
+                        </nav>
+                    )}
                 </div>
             </div>
 
-            <div className="container mx-auto flex flex-col items-center justify-between gap-4 px-4 py-4 md:flex-row">
+            <div className="container mx-auto flex flex-row items-center justify-between gap-2 px-4 py-4 md:flex-row">
                 <div className="flex items-center gap-8">
 
-                    <Link href="/" className="flex items-center gap-2 text-xl font-bold text-gray-900">
+                    <Link href="/" className="flex items-center gap-2 text-lg md:text-xl font-bold text-gray-900">
                         <div className="flex h-8 w-8 items-center justify-center rounded bg-blue-600 text-white">
                             <BsBriefcase />
                         </div>
-                        Jobpilot
+                        <span className="hidden xs:inline">Jobpilot</span>
+                        <span className="xs:hidden">Jobpilot</span>
                     </Link>
 
                     <div className="hidden items-center rounded-md border border-gray-200 bg-white p-1 lg:flex">
@@ -105,14 +133,14 @@ export default function Header() {
                     </div>
                 </div>
 
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2 md:gap-4">
                     <Link
                         href="/login"
-                        className="rounded-md px-6 py-2.5 text-sm font-semibold text-blue-600 transition-colors hover:bg-blue-50"
+                        className="rounded-md px-3 py-2 text-xs md:px-6 md:py-2.5 md:text-sm font-semibold text-blue-600 transition-colors hover:bg-blue-50 whitespace-nowrap"
                     >
                         Sign In
                     </Link>
-                    <button className="rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700">
+                    <button className="rounded-md bg-blue-600 px-3 py-2 text-xs md:px-6 md:py-2.5 md:text-sm font-semibold text-white transition-colors hover:bg-blue-700 whitespace-nowrap">
                         Post A Job
                     </button>
                 </div>
