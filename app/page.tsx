@@ -4,6 +4,12 @@ import Header from "@/components/Header";
 import Stats from "@/components/Stats";
 import MostPopularVacancies from "@/components/MostPopularVacancies";
 import HowItWorks from "@/components/HowItWorks";
+import PopularCategory from "@/components/PopularCategory";
+import FeaturedJobs from "@/components/FeaturedJobs";
+import TopCompanies from "@/components/TopCompanies";
+import ClientTestimonial from "@/components/ClientTestimonial";
+import SectionCTA from "@/components/SectionCTA";
+import Footer from "@/components/Footer";
 import Image from "next/image";
 import { CiSearch, CiLocationOn } from "react-icons/ci";
 
@@ -73,7 +79,20 @@ export default function Home() {
 
         <HowItWorks />
 
+        <PopularCategory />
+
+        <FeaturedJobs />
+
+        <TopCompanies />
+
+        <ClientTestimonial />
+
+
+        <SectionCTA />
+
       </main>
+
+      <Footer />
     </div>
   );
 }
