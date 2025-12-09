@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function CreateAccount() {
+  const [accountType, setAccountType] = useState<"candidate" | "employer">("candidate");
   const [fullName, setFullName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -21,7 +22,7 @@ export default function CreateAccount() {
     e.preventDefault();
     setError("");
 
-    
+
     if (!fullName || !username || !email || !password || !confirmPassword) {
       setError("All fields are required.");
       return;
@@ -32,13 +33,13 @@ export default function CreateAccount() {
       return;
     }
 
-   
+
     if (!email.includes("@") || !email.includes(".")) {
       setError("Please enter a valid email address (must contain '@' and '.').");
       return;
     }
 
-    
+
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).+$/;
     if (!passwordRegex.test(password)) {
       setError("Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.");
@@ -50,7 +51,7 @@ export default function CreateAccount() {
       return;
     }
 
-    console.log("Form submitted");
+    console.log("Form submitted", { accountType });
     router.push("/email-verification");
   };
 
@@ -96,8 +97,15 @@ export default function CreateAccount() {
 
 
         <div className="mb-6 rounded-lg bg-gray-100 p-1 text-sm font-medium text-gray-500">
+          <p className="mb-2 text-center text-xs text-gray-400 uppercase tracking-wider">Create Account As A</p>
           <div className="grid grid-cols-2 gap-1">
-            <button className="flex items-center justify-center gap-2 rounded-md py-2.5 transition-colors hover:text-gray-900">
+            <button
+              onClick={() => setAccountType("candidate")}
+              className={`flex items-center justify-center gap-2 rounded-md py-2.5 transition-colors ${accountType === "candidate"
+                ? "bg-[#0f172a] text-white shadow-sm"
+                : "hover:text-gray-900"
+                }`}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -114,7 +122,13 @@ export default function CreateAccount() {
               </svg>
               Candidate
             </button>
-            <button className="flex items-center justify-center gap-2 rounded-md bg-[#0f172a] py-2.5 text-white shadow-sm">
+            <button
+              onClick={() => setAccountType("employer")}
+              className={`flex items-center justify-center gap-2 rounded-md py-2.5 transition-colors ${accountType === "employer"
+                ? "bg-[#0f172a] text-white shadow-sm"
+                : "hover:text-gray-900"
+                }`}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -132,7 +146,6 @@ export default function CreateAccount() {
               Employers
             </button>
           </div>
-          <p className="mt-2 text-center text-xs text-gray-400 uppercase tracking-wider">Create Account As A</p>
         </div>
 
 
